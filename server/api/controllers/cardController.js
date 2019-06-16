@@ -59,7 +59,7 @@ var newCardEach = () => {
 }
 
 setInterval(() => {
-    console.log(`Current State - ${turn[0]}`)
+    //console.log(`Current State - ${turn[0]}`)
 }, 2000)
 
 exports.initializeGame = (req, res) => {
@@ -81,8 +81,8 @@ exports.playCard = (req, res) => {
         return res.status(400).send("not in the state to play")
     console.log("PLAYED CARD SUCCESSFULLY")
     nextTurn()
-    let playerID = req.param.playerID
-    let card = req.param.card
+    let playerID = req.params.playerID
+    let card = req.params.card
     if (playedCards[playerID])
         return
     playedCards[playerID] = parseInt(card)
