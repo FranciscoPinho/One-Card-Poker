@@ -20,7 +20,7 @@ var id = flag.Int("id", 1, "Player id (1 or 2)")
 func main() {
 	utils.ClearTerminal()
 	flag.Parse()
-	logrus.SetLevel(logrus.DebugLevel)
+	// logrus.SetLevel(logrus.DebugLevel)
 
 	if *id != 1 && *id != 2 {
 		panic("Invalid player id, must be 1 or 2")
