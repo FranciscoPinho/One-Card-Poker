@@ -54,7 +54,12 @@ var newCardEach = () => {
         if (played2 === 2 && played1 === 14)
             playerWon = 2
     else playerWon = 1
-
+    currentCards['1'].splice(currentCards['1'].indexOf(played1),1)
+    currentCards['2'].splice(currentCards['2'].indexOf(played2),1)
+    playedCards = {
+        1: undefined,
+        2: undefined
+    }
     playerWon < 2 ? currentCards['1'].push(cardArray.shift()) : currentCards['2'].push(cardArray.shift())
 }
 
@@ -69,6 +74,7 @@ exports.initializeGame = (req, res) => {
 }
 
 exports.announceUpDown = (req, res) => {
+    console.log("Received ask state")
     if (turn[0] !== "states")
         return res.status(400).send("not in the state to announce states")
     console.log("ASKED STATE SUCCESSFULLY")
@@ -101,10 +107,6 @@ exports.distributeCard = (req, res) => {
     if (turn[0] !== "distribute")
         return res.status(400).send("not in the state to distribute new card")
     newCardEach()
-    playedCards = {
-        1: undefined,
-        2: undefined
-    }
     console.log("CARD DISTRIBUTED SUCCESSFULLY")
     nextTurn()
     return res.status(200).send()
