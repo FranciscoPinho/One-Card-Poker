@@ -79,6 +79,7 @@ exports.announceUpDown = (req, res) => {
 exports.playCard = (req, res) => {
     if (turn[0] !== "play")
         return res.status(400).send("not in the state to play")
+    console.log("PLAYED CARD SUCCESSFULLY")
     nextTurn()
     let playerID = req.param.playerID
     let card = req.param.card
@@ -91,6 +92,7 @@ exports.playCard = (req, res) => {
 exports.getResults = (req, res) => {
     if (turn[0] !== "results")
         return res.status(400).send("not in the state to announce results")
+    console.log("RESULTS ANNOUNCED SUCCESSFULLY")
     nextTurn()
     return res.status(200).json(playedCards)
 }
@@ -103,6 +105,7 @@ exports.distributeCard = (req, res) => {
         1: undefined,
         2: undefined
     }
+    console.log("CARD DISTRIBUTED SUCCESSFULLY")
     nextTurn()
     return res.status(200).send()
 }
